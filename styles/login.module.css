@@ -1,0 +1,34 @@
+.window{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-top: 12rem;
+}
+.logincard{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading{
+    font-size: 30px;
+    margin-bottom: 20px;
+}  
+
+.email{
+    padding: 10px;
+}
+
+.password{
+    padding: 10px;
+
+}
+
+.submit{
+    margin-top: 20px;
+    max-width: 100px;
+}
