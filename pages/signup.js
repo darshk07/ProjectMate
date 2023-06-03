@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { theme } from '../components/theme';
 import { Button, Fab, TextField, ThemeProvider, Typography } from '@mui/material';
 import style from '../styles/login.module.css';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initFirebase } from '../firebase/firebaseApp'
 
-export default function login() {
+
+export default function signup() {
     initFirebase();
     const router = useRouter();
     const auth = getAuth();
@@ -22,9 +23,9 @@ export default function login() {
         router.push("/home");
     }
 
-    const loginUser = async (e) => {
+    const signupUser = async (e) => {
         e.preventDefault();
-        const result = await signInWithEmailAndPassword(auth, email, password)
+        const result = await createUserWithEmailAndPassword(auth, email, password)
         console.log(result.user);
     }
 
@@ -32,8 +33,9 @@ export default function login() {
         <ThemeProvider theme={theme}>
             <div className={style.window}>
                 <form className={style.logincard} color="primary">
-                    <div className={style.heading}>Login</div>
+                    <div className={style.heading}>Sign Up</div>
                     <div className={style.input}>
+
                         <TextField
                             id='margin-none'
                             label="Email"
@@ -46,8 +48,8 @@ export default function login() {
                             }}
                         />
                     </div>
-                    <div className={style.input}>
 
+                    <div className={style.input}>
                         <TextField
                             label="Password"
                             variant="outlined"
@@ -65,13 +67,15 @@ export default function login() {
                         <Fab
                             variant="extended"
                             color="secondary"
+                            className={style.submit}
                             type="submit"
-                            onClick={loginUser}>
-                            Login</Fab>
+                            onClick={signupUser}>
+                            Next
+                        </Fab>
                     </div>
                     <div className={style.link}>
                         <Typography variant="subtitle">
-                            <a href="/signup">Don't have an account?</a>
+                            <a href="/login">Already have an account?</a>
                         </Typography>
                     </div>
                 </form>
